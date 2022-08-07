@@ -152,6 +152,66 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-基于hexo的博客搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-安装Nodejs"><a href="#1-安装Nodejs" class="headerlink" title="1.安装Nodejs"></a>1.安装Nodejs</h2><p>官网安装好Nodejs，除了安装路径，一路next安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git bash #进入根目录</span><br><span class="line">node -v	#查看node版本</span><br><span class="line">node -v	#查看node版本</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安装hexo框架"><a href="#2-安装hexo框架" class="headerlink" title="2.安装hexo框架"></a>2.安装hexo框架</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=http://registry.npm.taobao.org #安装淘宝的cnpm 管理器</span><br><span class="line">cnpm -v	#查看cnpm版本</span><br><span class="line">cnpm install -g hexo-cli #安装hexo框架</span><br><span class="line">hexo -v	#查看hexo版本</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-配置个人博客"><a href="#3-配置个人博客" class="headerlink" title="3.配置个人博客"></a>3.配置个人博客</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog	#创建blog目录 本文件夹包含博客的所有东西，配置出错删除重来即可</span><br><span class="line">cd blog	 #进入blog目录</span><br><span class="line">hexo init 	#生成博客 初始化博客</span><br><span class="line">hexo s	#启动本地博客服务 访问 http://localhost:4000/ 即可看到本地博客</span><br><span class="line">hexo n &quot;我的第一篇文章&quot; #创建新的文章 </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">返回blog目录</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">写、改文章后的必要操作</span></span><br><span class="line">hexo clean #清理</span><br><span class="line">hexo g #生成</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-利用GitHub部署到远端"><a href="#4-利用GitHub部署到远端" class="headerlink" title="4.利用GitHub部署到远端"></a>4.利用GitHub部署到远端</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建一个新仓库，命名为 GitHub的用户名.github.io</span></span><br><span class="line">cnpm install --save hexo-deployer-git # 在blog目录下部署git插件</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">配置blog目录下的 _config.yml 文件----非常重要的文件，后续还可修改博客风格</span></span><br><span class="line">deploy:</span><br><span class="line">  	type: git</span><br><span class="line"> 	repo: https://github.com/YourGithubName/YourGithubName.github.io.git</span><br><span class="line">  	branch: master</span><br><span class="line">hexo d	#部署到Github仓库里 https://Name.github.io/ 可以查看博客</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">每次写好文章后，现在本地服务器查看有无错误，再上传</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-修改主题"><a href="#5-修改主题" class="headerlink" title="5.修改主题"></a>5.修改主题</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia  #下载yilia主题到本地</span><br><span class="line"><span class="meta prompt_"> #</span><span class="language-bash">修改blog目录下的 _config.yml 文件 ： theme: yilia</span></span><br><span class="line"> hexo c	#清理一下</span><br><span class="line">hexo g	#生成</span><br><span class="line">hexo d	#部署到远程Github仓库</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pwd # 显示当前路径</span><br><span class="line">cd #更改路径</span><br><span class="line"><span class="meta prompt_">mkdir#</span><span class="language-bash">创建文件夹</span></span><br><span class="line">cd ../../ #返回上两级目录</span><br><span class="line">ls -l #显示文件列表</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/07/%E5%9F%BA%E4%BA%8Ehexo%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-我的第一篇文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
