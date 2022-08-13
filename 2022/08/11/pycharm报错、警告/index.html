@@ -161,6 +161,14 @@
     is not going to be frozen to produce an executable.
 </code></pre>
 <h2 id="module-‘torch-optim’-has-no-attribute-‘sgd’"><a href="#module-‘torch-optim’-has-no-attribute-‘sgd’" class="headerlink" title="module ‘torch.optim’ has no attribute ‘sgd’"></a>module ‘torch.optim’ has no attribute ‘sgd’</h2><p>虽然代码提示有sgd属性，但实际没有，只有SGD</p>
+<h2 id="TypeError-‘tuple’-object-does-not-support-item-assignment"><a href="#TypeError-‘tuple’-object-does-not-support-item-assignment" class="headerlink" title="TypeError: ‘tuple’ object does not support item assignment"></a>TypeError: ‘tuple’ object does not support item assignment</h2><p>Tuple：tuple是另一种有序的列表，也称为“ 元组 ”。tuple 和 list 非常类似，但是，tuple一旦创建完毕，就不能修改了。</p>
+<ul>
+<li>创建tuple和创建list唯一不同之处是用( )替代了[ ]。</li>
+<li>获取 tuple 元素的方式和 list 是一模一样的，我们可以正常使用 t[0]，t[-1]等索引方式访问元素，但是不能赋值成别的元素，也不能增加删减元素。</li>
+</ul>
+<ul>
+<li>tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。指向‘a’，就不能指向’b’。如果指向list，就不能改成指向其他对象，但指向的这个list本身是可变的！</li>
+</ul>
 
         
             <div id="toc-article">
@@ -168,7 +176,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#shadows-name-%E2%80%98xxxx%E2%80%99-from-outer-scope-%E8%AD%A6%E5%91%8A%E8%A7%A3%E5%86%B3"><span class="toc-text">shadows name ‘xxxx’ from outer scope 警告解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RuntimeError-An-attempt-has-been-made-to-start-a-new-process-before-the-current-process-has-finished-its-bootstrapping-phase"><span class="toc-text">RuntimeError: An attempt has been made to start a new process before the current process has finished its bootstrapping phase.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#module-%E2%80%98torch-optim%E2%80%99-has-no-attribute-%E2%80%98sgd%E2%80%99"><span class="toc-text">module ‘torch.optim’ has no attribute ‘sgd’</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#shadows-name-%E2%80%98xxxx%E2%80%99-from-outer-scope-%E8%AD%A6%E5%91%8A%E8%A7%A3%E5%86%B3"><span class="toc-text">shadows name ‘xxxx’ from outer scope 警告解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RuntimeError-An-attempt-has-been-made-to-start-a-new-process-before-the-current-process-has-finished-its-bootstrapping-phase"><span class="toc-text">RuntimeError: An attempt has been made to start a new process before the current process has finished its bootstrapping phase.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#module-%E2%80%98torch-optim%E2%80%99-has-no-attribute-%E2%80%98sgd%E2%80%99"><span class="toc-text">module ‘torch.optim’ has no attribute ‘sgd’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TypeError-%E2%80%98tuple%E2%80%99-object-does-not-support-item-assignment"><span class="toc-text">TypeError: ‘tuple’ object does not support item assignment</span></a></li></ol>
     </div>
   </div>
 
