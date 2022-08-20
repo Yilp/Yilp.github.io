@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://yilp.github.io/2022/08/11/pytorch%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95/</loc>
+    
+    <lastmod>2022-08-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://yilp.github.io/2022/08/10/%E4%B8%80%E9%97%B4%E4%BD%8E%E5%A4%B9%E5%AE%9A%E5%BC%8F/</loc>
     
     <lastmod>2022-08-13</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://yilp.github.io/2022/08/07/%E5%9B%B4%E6%A3%8B-%E9%82%B1%E7%99%BE%E7%91%9E/</loc>
-    
-    <lastmod>2022-08-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://yilp.github.io/2022/08/11/pytorch%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2022-08-11</lastmod>
     
@@ -94,7 +94,7 @@
 
   <url>
     <loc>https://yilp.github.io/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -102,42 +102,42 @@
   
   <url>
     <loc>https://yilp.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/tags/%E5%9B%B4%E6%A3%8B/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/tags/python/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/tags/pytorch/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -146,28 +146,28 @@
   
   <url>
     <loc>https://yilp.github.io/categories/%E5%9B%B4%E6%A3%8B/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://yilp.github.io/categories/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2022-08-13</lastmod>
+    <lastmod>2022-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

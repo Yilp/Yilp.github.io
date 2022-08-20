@@ -161,6 +161,11 @@
 </ul>
 <p>注意：<code>padding=&#39;valid&#39;</code> is the same as no padding. <code>padding=&#39;same&#39;</code> pads the input so the output has the shape as the input. However, this mode doesn’t support any stride values other than 1.</p>
 <p>torch默认数据类型float32</p>
+<h1 id="nn-AdaptiveAvgPool2d（output-size）"><a href="#nn-AdaptiveAvgPool2d（output-size）" class="headerlink" title="nn.AdaptiveAvgPool2d（output_size）"></a>nn.AdaptiveAvgPool2d（output_size）</h1><p>输出形状可以是H*W，这种可以用一个元组表示(H, W)。</p>
+<p>也可以是一个单独的H，表示输出为H*H</p>
+<p>也可以是(H，None),None， None表示与输入一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># target output size of 5x7</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d((<span class="number">5</span>,<span class="number">7</span>))</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># target output size of 7x7 (square)</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">10</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># target output size of 10x7</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d((<span class="literal">None</span>, <span class="number">7</span>))</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">10</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure>
+
 
         
             <div id="toc-article">
@@ -168,7 +173,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CONV2D"><span class="toc-text">CONV2D</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CONV2D"><span class="toc-text">CONV2D</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nn-AdaptiveAvgPool2d%EF%BC%88output-size%EF%BC%89"><span class="toc-text">nn.AdaptiveAvgPool2d（output_size）</span></a></li></ol>
     </div>
   </div>
 
