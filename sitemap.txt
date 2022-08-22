@@ -1,3 +1,4 @@
+https://yilp.github.io/2022/08/22/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/
 https://yilp.github.io/2022/08/11/pytorch%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95/
 https://yilp.github.io/2022/08/10/%E4%B8%80%E9%97%B4%E4%BD%8E%E5%A4%B9%E5%AE%9A%E5%BC%8F/
 https://yilp.github.io/2022/08/11/pycharm%E6%8A%A5%E9%94%99%E3%80%81%E8%AD%A6%E5%91%8A/
@@ -15,6 +16,7 @@ https://yilp.github.io/tags/%E7%94%9F%E6%B4%BB/
 https://yilp.github.io/tags/%E5%9B%B4%E6%A3%8B/
 https://yilp.github.io/tags/python/
 https://yilp.github.io/tags/pytorch/
+https://yilp.github.io/tags/Linux/
 https://yilp.github.io/categories/%E5%9B%B4%E6%A3%8B/
 https://yilp.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/
 https://yilp.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/

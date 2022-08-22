@@ -166,6 +166,30 @@
 <p>也可以是(H，None),None， None表示与输入一样</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># target output size of 5x7</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d((<span class="number">5</span>,<span class="number">7</span>))</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">8</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># target output size of 7x7 (square)</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">10</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># target output size of 10x7</span></span><br><span class="line">m = nn.AdaptiveAvgPool2d((<span class="literal">None</span>, <span class="number">7</span>))</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">1</span>, <span class="number">64</span>, <span class="number">10</span>, <span class="number">9</span>)</span><br><span class="line">output = m(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure>
 
+<h1 id="torch-nn-BATCHNORM2D"><a href="#torch-nn-BATCHNORM2D" class="headerlink" title="torch.nn.BATCHNORM2D"></a>torch.nn.BATCHNORM2D</h1><p>在 4D 输入（具有附加通道维度的小批量 2D 输入）上应用批量标准化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认情况</span></span><br><span class="line">torch.nn.BatchNorm2d(num_features, eps=<span class="number">1e-05</span>, momentum=<span class="number">0.1</span>, affine=<span class="literal">True</span>, track_running_stats=<span class="literal">True</span>, device=<span class="literal">None</span>, dtype=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>参数</p>
+<ul>
+<li><p><strong>num_features</strong> – C,   <em>C</em> 来自于输入 (N, C, H, W)</p>
+</li>
+<li><p><strong>eps</strong> –稳定系数，防止分母出现0。 Default: 1e-5</p>
+</li>
+<li><p><strong>momentum</strong> – the value used for the running_mean and running_var computation. Default: 0.1 。BatchNorm2d里面存储均值（running_mean）和方差（running_var）更新时的参数。这个动量参数不同于优化器类和传统的动量概念</p>
+</li>
+<li><p><strong>affine</strong> –  <code>True</code>代表gamma，beta是否可学。如果设为True，代表两个参数是通过学习得到的；如果设为False，代表两个参数是固定值，默认情况下，gamma是1，beta是0</p>
+</li>
+<li><p><strong>track_running_stats</strong> –BatchNorm2d中存储的的均值和方差是否需要更新，若为True，表示需要更新；反之不需要更新</p>
+</li>
+<li><pre><code class="python"># With Learnable Parameters
+m = nn.BatchNorm2d(100)
+# Without Learnable Parameters
+m = nn.BatchNorm2d(100, affine=False)
+input = torch.randn(20, 100, 35, 45)
+output = m(input)
+</code></pre>
+</li>
+</ul>
 
         
             <div id="toc-article">
@@ -173,7 +197,7 @@
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CONV2D"><span class="toc-text">CONV2D</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nn-AdaptiveAvgPool2d%EF%BC%88output-size%EF%BC%89"><span class="toc-text">nn.AdaptiveAvgPool2d（output_size）</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CONV2D"><span class="toc-text">CONV2D</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#nn-AdaptiveAvgPool2d%EF%BC%88output-size%EF%BC%89"><span class="toc-text">nn.AdaptiveAvgPool2d（output_size）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#torch-nn-BATCHNORM2D"><span class="toc-text">torch.nn.BATCHNORM2D</span></a></li></ol>
     </div>
   </div>
 
@@ -256,6 +280,10 @@
       <ul>
         
           <li>
+            <a href="/2022/08/22/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+          </li>
+        
+          <li>
             <a href="/2022/08/11/python%E8%AF%AD%E6%B3%95%E8%AE%B0%E5%BD%95/">python语法记录</a>
           </li>
         
@@ -271,10 +299,6 @@
             <a href="/2022/08/10/%E4%B8%80%E9%97%B4%E4%BD%8E%E5%A4%B9%E5%AE%9A%E5%BC%8F/">一间低夹定式</a>
           </li>
         
-          <li>
-            <a href="/2022/08/07/%E5%9B%B4%E6%A3%8B-%E9%82%B1%E7%99%BE%E7%91%9E/">围棋-邱百瑞</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -285,7 +309,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;">博客</a> <a href="/tags/%E5%9B%B4%E6%A3%8B/" style="font-size: 15px;">围棋</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 15px;">环境搭建</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">生活</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;">博客</a> <a href="/tags/%E5%9B%B4%E6%A3%8B/" style="font-size: 15px;">围棋</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 15px;">环境搭建</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">生活</a>
     </div>
   </div>
 
@@ -304,7 +328,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -314,7 +338,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%B4%E6%A3%8B/" rel="tag">围棋</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%B4%E6%A3%8B/" rel="tag">围棋</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
