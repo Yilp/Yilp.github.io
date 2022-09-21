@@ -143,8 +143,8 @@
 
 <p>对于图片数据集，<strong>主要有两种形式</strong>：标签在文件夹上和标签在文件命名上，其中，标签为单独的csv文件也属于标签在文件夹上这一类。</p>
 <h1 id="一、数据集读取"><a href="#一、数据集读取" class="headerlink" title="一、数据集读取"></a><strong>一、数据集读取</strong></h1><h2 id="1-标签在文件夹上："><a href="#1-标签在文件夹上：" class="headerlink" title="1.标签在文件夹上："></a><strong>1.标签在文件夹上：</strong></h2><p><strong>数据集</strong>：有各个类别的文件夹，每个文件夹的命名即为标签。</p>
-<p><strong>加载方法</strong>：直接使用 <strong>torchvision.datasets.Imagefolder</strong> 加载数据，再利用<strong>torch.utils.data.DataLoader</strong> 装进<strong>DataLoade</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mydataset = datasets.ImageFolder(root=<span class="string">&quot;E:/Code/PycharmProject/Dataset_dataload/Datasets/dogcat/train&quot;</span>,</span><br><span class="line">           transform=data_transform)</span><br><span class="line">dataset_loader = torch.utils.data.DataLoader(Mydataset,batch_size=<span class="number">4</span>,shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>加载方法</strong>：直接使用 <strong>torchvision.datasets.Imagefolder</strong> 加载数据，再利用<strong>torch.utils.data.DataLoader</strong> 装进<strong>DataLoader</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mydataset = torchvision.datasets.ImageFolder(root=<span class="string">&quot;E:/Code/PycharmProject/Dataset_dataload/Datasets/dogcat/train&quot;</span>, transform=data_transform)</span><br><span class="line"></span><br><span class="line">dataset_loader = torch.utils.data.DataLoader(Mydataset,batch_size=<span class="number">4</span>,shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
 <h3 id="标签为单独的csv文件"><a href="#标签为单独的csv文件" class="headerlink" title="标签为单独的csv文件"></a>标签为单独的csv文件</h3><p><strong>数据集：</strong>1个训练集文件夹，标签为csv文件</p>
 <p>需要转换成标签在文件夹上的形式</p>
