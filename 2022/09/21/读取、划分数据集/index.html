@@ -138,14 +138,47 @@
     </div>
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p><strong>总结了常见的数据集读取方法以及对数据集的划分</strong></p>
+<span id="more"></span>
+
+<p>对于图片数据集，<strong>主要有两种形式</strong>：标签在文件夹上和标签在文件命名上，其中，标签为单独的csv文件也属于标签在文件夹上这一类。</p>
+<h1 id="一、数据集读取"><a href="#一、数据集读取" class="headerlink" title="一、数据集读取"></a><strong>一、数据集读取</strong></h1><h2 id="1-标签在文件夹上："><a href="#1-标签在文件夹上：" class="headerlink" title="1.标签在文件夹上："></a><strong>1.标签在文件夹上：</strong></h2><p><strong>数据集</strong>：有各个类别的文件夹，每个文件夹的命名即为标签。</p>
+<p><strong>加载方法</strong>：直接使用 <strong>torchvision.datasets.Imagefolder</strong> 加载数据，再利用<strong>torch.utils.data.DataLoader</strong> 装进<strong>DataLoade</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mydataset = datasets.ImageFolder(root=<span class="string">&quot;E:/Code/PycharmProject/Dataset_dataload/Datasets/dogcat/train&quot;</span>,</span><br><span class="line">           transform=data_transform)</span><br><span class="line">dataset_loader = torch.utils.data.DataLoader(Mydataset,batch_size=<span class="number">4</span>,shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="标签为单独的csv文件"><a href="#标签为单独的csv文件" class="headerlink" title="标签为单独的csv文件"></a>标签为单独的csv文件</h3><p><strong>数据集：</strong>1个训练集文件夹，标签为csv文件</p>
+<p>需要转换成标签在文件夹上的形式</p>
+<p><strong>加载方法</strong>：先读取训练集路径和标签，建立各个类别的文件夹，然后将各类数据分别复制到相应的文件夹里，然后<strong>Imagefolder</strong> 加载数据，装进<strong>DataLoader</strong></p>
+<h2 id="2-标签在文件命名上"><a href="#2-标签在文件命名上" class="headerlink" title="2.标签在文件命名上"></a><strong>2.标签在文件命名上</strong></h2><p><strong>数据集：</strong>1个训练集文件夹，标签在文件命名上</p>
+<p><strong>加载方法：</strong>利用继承<strong>torch.utils.data.Dataset</strong>类 来创建数据集,然后装进<strong>DataLoader</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyDataset</span>(<span class="title class_ inherited__">Dataset</span>): <span class="comment">#继承Dataset</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, path_dir, transform=<span class="literal">None</span></span>): <span class="comment">#初始化一些属性</span></span><br><span class="line">        self.path_dir = path_dir <span class="comment">#文件夹路径</span></span><br><span class="line">        self.transform = transform <span class="comment">#对图形进行处理，如标准化、截取、转换等</span></span><br><span class="line">        self.images = os.listdir(self.path_dir)<span class="comment">#路径下的所有文件的文件名放列表中</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.images) <span class="comment">#返回整个数据集的大小</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self,index</span>):<span class="comment">#根据索引index返回图像及标签</span></span><br><span class="line">        image_index = self.images[index]<span class="comment">#根据索引获取图像文件名称</span></span><br><span class="line">        img_path = os.path.join(self.path_dir, image_index)<span class="comment">#单幅图像的绝对路径</span></span><br><span class="line">        img = Image.<span class="built_in">open</span>(img_path).convert(<span class="string">&#x27;RGB&#x27;</span>)<span class="comment"># 读取图像</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 根据目录名称获取图像标签（cat或dog）</span></span><br><span class="line">        label = img_path.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>].split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="comment">#把字符转换为数字cat--0，dog--1</span></span><br><span class="line">        label = <span class="number">1</span> <span class="keyword">if</span> <span class="string">&#x27;dog&#x27;</span> <span class="keyword">in</span> label <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> self.transform <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            img = self.transform(img)</span><br><span class="line">        <span class="keyword">return</span> img,label</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、数据集划分训练集、验证集"><a href="#二、数据集划分训练集、验证集" class="headerlink" title="二、数据集划分训练集、验证集"></a><strong>二、数据集划分训练集、验证集</strong></h1><p><strong>数据集划分方法很多，记录两种使用过的以及一些更简单的方法。</strong></p>
+<ul>
+<li><p><strong>1</strong>.在读取标签为csv文件的数据集时，需要将数据集复制到各类文件夹里，此时划分训练集、验证集，设置好验证集比例，将每个种类的一部分数据复制到验证集的对应种类的文件夹里，即划分数据集完成。</p>
+</li>
+<li><p><strong>2</strong>.利用继承<strong>Dataset</strong>类</p>
+</li>
+</ul>
+<p><strong>更简单的几种方法</strong></p>
+<ul>
+<li><strong>torch.utils.data.random_split</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">train_size = <span class="built_in">int</span>(<span class="number">0.8</span> * <span class="built_in">len</span>(full_dataset))</span><br><span class="line">test_size = <span class="built_in">len</span>(full_dataset) - train_size</span><br><span class="line">train_dataset, test_dataset = torch.utils.data.random_split(full_dataset, [train_size, test_size])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>**torch.utils.data.SubsetRandomSampler(indices)**：无放回地按照给定的索引列表采样样本元素。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">dataset = MyCustomDataset(my_path)</span><br><span class="line">batch_size = <span class="number">16</span></span><br><span class="line">validation_split = <span class="number">.2</span></span><br><span class="line">shuffle_dataset = <span class="literal">True</span></span><br><span class="line">random_seed= <span class="number">42</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating data indices for training and validation splits:</span></span><br><span class="line">dataset_size = <span class="built_in">len</span>(dataset)</span><br><span class="line">indices = <span class="built_in">list</span>(<span class="built_in">range</span>(dataset_size))</span><br><span class="line">split = <span class="built_in">int</span>(np.floor(validation_split * dataset_size))  <span class="comment"># 验证集样本数</span></span><br><span class="line"><span class="keyword">if</span> shuffle_dataset :</span><br><span class="line">    np.random.seed(random_seed)</span><br><span class="line">    np.random.shuffle(indices)</span><br><span class="line">train_indices, val_indices = indices[split:], indices[:split]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Creating PT data samplers and loaders:</span></span><br><span class="line">train_sampler = SubsetRandomSampler(train_indices)</span><br><span class="line">valid_sampler = SubsetRandomSampler(val_indices)</span><br><span class="line"></span><br><span class="line">train_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, </span><br><span class="line">                                           sampler=train_sampler)</span><br><span class="line">validation_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size,</span><br><span class="line">                                                sampler=valid_sampler)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage Example:</span></span><br><span class="line">num_epochs = <span class="number">10</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">    <span class="comment"># Train:   </span></span><br><span class="line">    <span class="keyword">for</span> batch_index, (faces, labels) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        <span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+
         
             <div id="toc-article">
                 
   <div class="widget-wrap" id="toc-wrap">
     <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
     <div class="widget">
-      
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AF%BB%E5%8F%96"><span class="toc-text">一、数据集读取</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%A0%87%E7%AD%BE%E5%9C%A8%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8A%EF%BC%9A"><span class="toc-text">1.标签在文件夹上：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E4%B8%BA%E5%8D%95%E7%8B%AC%E7%9A%84csv%E6%96%87%E4%BB%B6"><span class="toc-text">标签为单独的csv文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%87%E7%AD%BE%E5%9C%A8%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E4%B8%8A"><span class="toc-text">2.标签在文件命名上</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%92%E5%88%86%E8%AE%AD%E7%BB%83%E9%9B%86%E3%80%81%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="toc-text">二、数据集划分训练集、验证集</span></a></li></ol>
     </div>
   </div>
 
@@ -166,6 +199,8 @@
           
 
           
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
           
     <div class="social-share">
       <span>分享到:</span>
@@ -246,7 +281,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/pytorch/" style="font-size: 10px;">pytorch</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;">博客</a> <a href="/tags/%E5%9B%B4%E6%A3%8B/" style="font-size: 15px;">围棋</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 15px;">环境搭建</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">生活</a>
+      <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/pytorch/" style="font-size: 15px;">pytorch</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;">博客</a> <a href="/tags/%E5%9B%B4%E6%A3%8B/" style="font-size: 15px;">围棋</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 15px;">环境搭建</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">生活</a>
     </div>
   </div>
 
@@ -275,7 +310,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-tag"></i> 标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%B4%E6%A3%8B/" rel="tag">围棋</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%B4%E6%A3%8B/" rel="tag">围棋</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
