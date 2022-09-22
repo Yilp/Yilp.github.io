@@ -11,14 +11,14 @@ https://yilp.github.io/2022/08/07/hello-world/
 https://yilp.github.io/categories/index.html
 https://yilp.github.io/tags/index.html
 https://yilp.github.io/
-https://yilp.github.io/tags/Linux/
-https://yilp.github.io/tags/python/
 https://yilp.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/
 https://yilp.github.io/tags/%E5%8D%9A%E5%AE%A2/
+https://yilp.github.io/tags/Linux/
+https://yilp.github.io/tags/python/
 https://yilp.github.io/tags/pytorch/
 https://yilp.github.io/tags/%E7%94%9F%E6%B4%BB/
 https://yilp.github.io/tags/%E5%9B%B4%E6%A3%8B/
-https://yilp.github.io/categories/%E6%97%A5%E5%BF%97/
 https://yilp.github.io/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/
+https://yilp.github.io/categories/%E6%97%A5%E5%BF%97/
 https://yilp.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/
 https://yilp.github.io/categories/%E5%9B%B4%E6%A3%8B/
